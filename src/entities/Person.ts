@@ -1,0 +1,40 @@
+import { Column, CreateDateColumn, Entity, ObjectID, ObjectIdColumn, UpdateDateColumn } from "typeorm";
+
+@Entity()
+class Person {
+    
+    @ObjectIdColumn()
+    id: ObjectID;
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+    @Column()
+    phone: string;
+
+    @Column()
+    email: string;
+
+    @Column()
+    cpf: string;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+
+    constructor(firstName: string, lastName: string, phone: string, email: string, cpf: string ){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.cpf = cpf;
+    }
+
+}
+
+export { Person }
