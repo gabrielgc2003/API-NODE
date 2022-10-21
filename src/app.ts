@@ -1,4 +1,5 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
+import 'express-async-errors';
 
 import { AppDataSource } from './database/AppDataSource';
 import { personRouter } from './routes/PersonRoutes';
@@ -16,5 +17,13 @@ app.use('/api', (request, response) => {
         message: 'Hello WOrd'
     })
 });
+
+app.use( (err : Error, req: Request, res: Response, _next: NextFunction ) => {
+    return res.status(500).json({
+        message: err.message,
+        stack: err.stack
+    });
+});
+
 
 export {app};
